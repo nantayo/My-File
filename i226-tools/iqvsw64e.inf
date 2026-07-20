@@ -1,0 +1,68 @@
+;*******************************************************************************
+;*                                                                            **
+;*                     I N T E L   P R O P R I E T A R Y                      **
+;*                                                                            **
+;*   COPYRIGHT (c) 2006 BY INTEL CORPORATION.      ALL RIGHTS RESERVED.  NO   **
+;*   PART  OF  THIS  PROGRAM OR PUBLICATION MAY BE REPRODUCED, TRANSMITTED,   **
+;*   TRANSCRIBED, STORED IN A RETRIEVAL  SYSTEM,  OR  TRANSLATED  INTO  ANY   **
+;*   LANGUAGE OR COMPUTER LANGUAGE IN ANY FORM OR BY ANY MEANS, ELECTRONIC,   **
+;*   MECHANICAL, MAGNETIC, OPTICAL, CHEMICAL, MANUAL, OR OTHERWISE, WITHOUT   **
+;*   THE PRIOR WRITTEN PERMISSION OF :                                        **
+;*                                                                            **
+;*                             INTEL CORPORATION                              **
+;*                                                                            **
+;*                          2200 MISSION COLLEGE BLVD                         **
+;*                                                                            **
+;*                     SANTA CLARA, CALIFORNIA 95052-8119                     **
+;*                                                                            **
+;*******************************************************************************
+;
+;*******************************************************************************
+; iqvsw64e.INF
+;
+;
+; $Revision$
+;
+
+[Version]
+Signature   = "$Windows NT$"
+Provider    = "Intel"
+CatalogFile = iqvsw64e.cat
+DriverVer = 04/23/2025,1.5.0.20
+Class       = NALDevice
+ClassGuid   = {b83400f8-b7b2-4bb7-8fe3-d179eddb8e8b}
+PnpLockdown = 1
+
+[SourceDisksNames]
+1 = %DISKNAME%,,,
+
+[SourceDisksFiles]
+iqvsw64e.sys = 1,,
+
+[DefaultInstall.NTAMD64]
+CopyFiles = iQV.CopyFiles
+
+[DefaultUninstall.NTAMD64]
+LegacyUninstall = 1
+DelFiles = iQV.DelFiles
+
+[DestinationDirs]
+iQV.CopyFiles = 12    ; Destination for iQV.CopyFiles section is %system32\drivers
+iQV.DelFiles  = 12    ; Destination for iQV.DelFiles section is %system32\drivers
+
+[iQV.CopyFiles]
+iqvsw64e.sys,,,2
+
+[iQV.DelFiles]
+iqvsw64e.sys,,,2
+
+[Strings]
+DISKNAME="Intel(R) Tools SDK Disk"
+
+[ClassInstall32]
+Addreg=iQVDriverRegister
+
+[iQVDriverRegister]
+;HKR,,,,%ClassName%
+HKR,,Icon,,"-5"
+HKR,,Security,,"D:P(A;;GA;;;SY)(A;;GA;;;BA)" ;System and Admin only access
